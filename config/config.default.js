@@ -10,7 +10,22 @@ module.exports = appInfo => {
    * built-in config
    * @type {Egg.EggAppConfig}
    **/
-  const config = {};
+  const config = {
+    view: {
+      defaultViewEngine: 'nunjucks',
+      mapping: {
+        '.tpl': 'nunjucks'
+      }
+    },
+    news: {
+      pageSize: 5,
+      serverUrl: 'https://hacker-news.firebaseio.com/v0'
+    },
+    middleware: ['robot'],
+    robot: {
+      ua: [/Baiduspider/i]
+    }
+  };
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + SECURITY_COOKIE_KEYS;

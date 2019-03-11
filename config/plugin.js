@@ -5,3 +5,8 @@ module.exports = {
   //   enable: true,
   // }
 };
+
+exports.nunjucks = {
+  enable: true,
+  package: 'egg-view-nunjucks'
+};
