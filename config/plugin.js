@@ -11,5 +11,9 @@ module.exports = {
   mysql: {
     enable: true,
     package: 'egg-mysql'
+  },
+  graphql: {
+    enable: true,
+    package: 'egg-graphql'
   }
 };
