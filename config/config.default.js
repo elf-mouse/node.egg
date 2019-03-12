@@ -24,6 +24,12 @@ module.exports = appInfo => {
     middleware: ['robot'],
     robot: {
       ua: [/Baiduspider/i]
+    },
+    onerror: {
+      errorPageUrl: '/public/50x.html'
+    },
+    notfound: {
+      pageUrl: '/public/404.html'
     }
   };
 
