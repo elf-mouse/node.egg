@@ -25,9 +25,24 @@ class UserConnector {
     return this.loader.load(id);
   }
 
-  // 直接调用 service
-  async getUserById(userId) {
-    return await this.ctx.service.user.find(userId);
+  createUser(user) {
+    return this.ctx.app.model.User.create(user);
+  }
+
+  updateUser(id, user) {
+    return this.ctx.app.model.User.update(user, {
+      where: {
+        id
+      }
+    });
+  }
+
+  deleteUser(id) {
+    return this.ctx.app.model.User.destroy({
+      where: {
+        id
+      }
+    });
   }
 }
 
