@@ -1,12 +1,7 @@
 type User {
   id: ID!
-  name: String!
-  email: String!
-  password: String!
-  created_at: String
-  updated_at: String
-}
-
-type Query {
-  user(id: ID!): User
+  name: String
+  age: Int
+  created_at: Date
+  updated_at: Date
 }

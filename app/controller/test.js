@@ -1,24 +1,14 @@
 const Controller = require('egg').Controller;
 
-class UserController extends Controller {
+class TestController extends Controller {
   async info() {
     const ctx = this.ctx;
-    const userId = ctx.params.id;
-    // const user = await ctx.service.user.find(userId);
 
-    const query = JSON.stringify({
-      query: `{
-        user(id: ${userId}) {
-          id
-          password,
-          created_at
-        }
-      }`
-    });
-    const user = await ctx.service.graphql.query(query);
-
-    ctx.body = user;
+    console.log('testql:', JSON.stringify(ctx.request.body));
+    ctx.body = await ctx.service.graphql.query(
+      JSON.stringify(ctx.request.body)
+    );
   }
 }
 
-module.exports = UserController;
+module.exports = TestController;
