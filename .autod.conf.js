@@ -3,7 +3,7 @@ module.exports = {
   prefix: '^',
   plugin: 'autod-egg',
   test: ['test', 'benchmark'],
-  dep: ['egg', 'egg-scripts'],
+  dep: ['egg', 'egg-scripts', 'egg-sequelize', 'mysql2'],
   devdep: [
     'egg-ci',
     'egg-bin',
@@ -12,7 +12,8 @@ module.exports = {
     'autod-egg',
     'eslint',
     'eslint-config-egg',
-    'webstorm-disable-index'
+    'webstorm-disable-index',
+    'sequelize-cli'
   ],
   exclude: ['./test/fixtures', './dist']
 };

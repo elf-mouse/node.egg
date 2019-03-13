@@ -8,9 +8,9 @@ module.exports = {
     enable: true,
     package: 'egg-view-nunjucks'
   },
-  mysql: {
+  sequelize: {
     enable: true,
-    package: 'egg-mysql'
+    package: 'egg-sequelize'
   },
   graphql: {
     enable: true,
