@@ -17,7 +17,7 @@ class PostService extends Service {
   }
 
   async find(id) {
-    const post = await this.ctx.model.Post.findById(id, {
+    const post = await this.ctx.model.Post.findByPk(id, {
       include: [
         {
           model: this.ctx.model.User,
@@ -37,13 +37,13 @@ class PostService extends Service {
   }
 
   async update({ id, user_id, updates }) {
-    const post = await this.ctx.model.Post.findByIdWithUser(id, user_id);
+    const post = await this.ctx.model.Post.findByPkWithUser(id, user_id);
     if (!post) this.ctx.throw(404, 'post not found');
     return post.update(updates);
   }
 
   async destroy({ id, user_id }) {
-    const post = await this.ctx.model.Post.findByIdWithUser(id, user_id);
+    const post = await this.ctx.model.Post.findByPkWithUser(id, user_id);
     if (!post) this.ctx.throw(404, 'post not found');
     return post.destroy();
   }

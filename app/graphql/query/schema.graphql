@@ -1,6 +1,6 @@
 type Query {
   user(id: ID!): User
-  users: [User!]
+  users(page: Int!, limit: Int): UserPagination
 
   post(id: ID!): Post
   posts: [Post!]

@@ -13,7 +13,7 @@ class UserConnector {
           $in: ids
         }
       }
-    }).then(us => us.map(u => u.toJSON()));
+    }).then(keys => keys.map(data => data.toJSON()));
     return users;
   }
 
@@ -22,27 +22,45 @@ class UserConnector {
   }
 
   fetchById(id) {
-    return this.loader.load(id);
+    const user = this.loader.load(id).catch(error => {
+      this.ctx.throw(404, 'user not found');
+      throw error;
+    });
+    return user;
+  }
+
+  async list(page, limit) {
+    const result = await this.ctx.model.User.findAndCountAll({
+      offset: (page - 1) * limit,
+      limit,
+      order: [['created_at', 'desc'], ['id', 'desc']]
+    });
+    return {
+      page,
+      pageSize: limit,
+      totalCount: result.count,
+      list: result.rows
+    };
   }
 
   createUser(user) {
     return this.ctx.app.model.User.create(user);
   }
 
-  updateUser(id, user) {
-    return this.ctx.app.model.User.update(user, {
-      where: {
-        id
-      }
-    });
+  async updateUser(id, updates) {
+    const user = await this.ctx.model.User.findByPk(id);
+    if (!user) {
+      this.ctx.throw(404, 'user not found');
+    }
+    return user.update(updates);
   }
 
-  deleteUser(id) {
-    return this.ctx.app.model.User.destroy({
-      where: {
-        id
-      }
-    });
+  async deleteUser(id) {
+    const user = await this.ctx.model.User.findByPk(id);
+    if (!user) {
+      this.ctx.throw(404, 'user not found');
+    }
+    return user.destroy();
   }
 }
 

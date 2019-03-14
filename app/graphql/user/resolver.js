@@ -3,8 +3,8 @@ module.exports = {
     user(root, { id }, ctx) {
       return ctx.connector.user.fetchById(id);
     },
-    users(root, { ids }, ctx) {
-      return ctx.connector.user.fetchByIds(ids);
+    users(root, { page, limit = 10 }, ctx) {
+      return ctx.connector.user.list(page, limit);
     }
   },
   Mutation: {

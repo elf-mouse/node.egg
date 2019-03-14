@@ -5,3 +5,10 @@ type User {
   created_at: Date
   updated_at: Date
 }
+
+type UserPagination {
+  page: Int!
+  pageSize: Int!
+  totalCount: Int!
+  list: [User!]
+}
